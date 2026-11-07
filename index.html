@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#F8F5EF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Jaswanth &amp; Lalitha — Wedding Invitation</title>
+  <meta name="description" content="Digital Wedding Invitation for Jaswanth &amp; Lalitha. Traditional South Indian wedding celebration.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Paper texture overlay -->
+  <div class="paper-texture-layer" aria-hidden="true"></div>
+
+  <!-- Decorative traditional corner flourishes -->
+  <div class="decorative-corner corner-top-left" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M0 4 C24 4, 38 18, 38 42 M4 0 C4 24, 18 38, 42 38" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M0 16 C16 16, 26 26, 26 42 M16 0 C16 16, 26 26, 42 26" stroke-width="0.8" stroke-dasharray="2 3"/>
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+      <circle cx="28" cy="28" r="2" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="decorative-corner corner-top-right" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M100 4 C76 4, 62 18, 62 42 M96 0 C96 24, 82 38, 58 38" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M100 16 C84 16, 74 26, 74 42 M84 0 C84 16, 74 26, 58 26" stroke-width="0.8" stroke-dasharray="2 3"/>
+      <circle cx="88" cy="12" r="3" fill="currentColor"/>
+      <circle cx="72" cy="28" r="2" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="decorative-corner corner-bottom-left" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M0 96 C24 96, 38 82, 38 58 M4 100 C4 76, 18 62, 42 62" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M0 84 C16 84, 26 74, 26 58 M16 100 C16 84, 26 74, 42 74" stroke-width="0.8" stroke-dasharray="2 3"/>
+      <circle cx="12" cy="88" r="3" fill="currentColor"/>
+      <circle cx="28" cy="72" r="2" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="decorative-corner corner-bottom-right" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M100 96 C76 96, 62 82, 62 58 M96 100 C96 76, 82 62, 58 62" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M100 84 C84 84, 74 74, 74 58 M84 100 C84 84, 74 74, 58 74" stroke-width="0.8" stroke-dasharray="2 3"/>
+      <circle cx="88" cy="88" r="3" fill="currentColor"/>
+      <circle cx="72" cy="72" r="2" fill="currentColor"/>
+    </svg>
+  </div>
+
+  <!-- Loading State Screen -->
+  <div class="loader-overlay" id="loaderOverlay">
+    <div class="loader-content">
+      <div class="loader-mandala" aria-hidden="true">
+        <svg viewBox="0 0 80 80" class="spinner-svg">
+          <circle class="spinner-track" cx="40" cy="40" r="34"></circle>
+          <circle class="spinner-arc" cx="40" cy="40" r="34"></circle>
+        </svg>
+        <div class="loader-gem">✦</div>
+      </div>
+      <h2 class="loader-title">Jaswanth &amp; Lalitha</h2>
+      <p class="loader-subtitle">Opening Wedding Invitation...</p>
+    </div>
+  </div>
+
+  <!-- Error State (Hidden by default) -->
+  <div class="error-overlay" id="errorOverlay" style="display: none;">
+    <div class="error-card">
+      <div class="error-icon">⚠️</div>
+      <h3 class="error-title">Unable to Load Invitation</h3>
+      <p class="error-desc" id="errorDesc">Could not load the invitation images from the assets folder.</p>
+      <button class="btn btn-primary" id="btnRetry">Try Again</button>
+    </div>
+  </div>
+
+  <!-- Top Action Bar (Fullscreen & Sound/Help toggle) -->
+  <header class="app-topbar">
+    <div class="topbar-left">
+      <span class="auspicious-tag">॥ శ్రీరస్తు ॥ శుభమస్తు ॥</span>
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn" id="btnFullscreen" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+        <svg class="icon-expand" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <svg class="icon-compress" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <path d="M4 14h6m0 0v6m0-6l-7 7m17-11h-6m0 0V4m0 6l7-7M14 10h6m-6 0V4m0 6l7-7M4 10h6m0 0V4m0 6L3 3"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="app-main">
+    <!-- Wedding Title Header -->
+    <header class="invitation-header">
+      <div class="header-emblem" aria-hidden="true">
+        <svg viewBox="0 0 60 20" width="60" height="20" fill="currentColor">
+          <path d="M30 2 C32 7, 36 10, 42 10 C36 10, 32 13, 30 18 C28 13, 24 10, 18 10 C24 10, 28 7, 30 2 Z"/>
+          <circle cx="10" cy="10" r="2"/>
+          <circle cx="50" cy="10" r="2"/>
+          <line x1="0" y1="10" x2="6" y2="10" stroke="currentColor" stroke-width="1"/>
+          <line x1="54" y1="10" x2="60" y2="10" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </div>
+      <h1 class="invitation-names">Jaswanth &amp; Lalitha</h1>
+      <p class="invitation-type">Wedding Invitation</p>
+    </header>
+
+    <!-- 3D Invitation Stage -->
+    <section class="invitation-stage" id="invitationStage" aria-label="Wedding Invitation Viewer">
+      <!-- 3D Card Viewport -->
+      <div class="card-viewport" id="cardViewport">
+        <div class="card-stage" id="cardStage">
+          <!-- Static Under Card Sheets -->
+          <div class="card-sheet" id="sheet1" data-page="1">
+            <img src="assets/Cover.png" alt="Jaswanth &amp; Lalitha Wedding Invitation Cover" class="card-image" id="imgCover" draggable="false" />
+          </div>
+
+          <div class="card-sheet" id="sheet2" data-page="2" style="display: none;">
+            <img src="assets/Main.png" alt="Jaswanth &amp; Lalitha Wedding Invitation Details" class="card-image" id="imgMain" draggable="false" />
+          </div>
+
+          <div class="card-sheet" id="sheet3" data-page="3" style="display: none;">
+            <img src="assets/back.png" alt="Jaswanth &amp; Lalitha Wedding Invitation Back Page" class="card-image" id="imgBack" draggable="false" />
+          </div>
+
+          <!-- Dynamic 3D Turning Leaf (Used during page flip transitions) -->
+          <div class="flipper-leaf" id="flipperLeaf" aria-hidden="true" style="display: none;">
+            <!-- Front Face of Turning Leaf -->
+            <div class="flipper-face flipper-front" id="flipperFront">
+              <img src="" alt="" class="flipper-image" id="flipperImgFront" draggable="false" />
+              <div class="flipper-shade flipper-shade-front" id="flipperShadeFront"></div>
+            </div>
+
+            <!-- Back Face of Turning Leaf -->
+            <div class="flipper-face flipper-back" id="flipperBack">
+              <div class="inside-cover-texture">
+                <div class="inside-cover-border">
+                  <div class="inside-cover-motif">
+                    <svg viewBox="0 0 60 60" width="46" height="46" fill="none" stroke="currentColor">
+                      <circle cx="30" cy="30" r="22" stroke-width="1" stroke-dasharray="2 3"/>
+                      <circle cx="30" cy="30" r="14" stroke-width="1.2"/>
+                      <circle cx="30" cy="30" r="4" fill="currentColor"/>
+                      <path d="M30 6 L30 54 M6 30 L54 30" stroke-width="0.8" stroke-opacity="0.6"/>
+                    </svg>
+                  </div>
+                  <p class="inside-cover-script">॥ శ్రీరస్తు ॥ శుభమస్తు ॥</p>
+                  <p class="inside-cover-subscript">Jaswanth &amp; Lalitha</p>
+                </div>
+              </div>
+              <div class="flipper-shade flipper-shade-back" id="flipperShadeBack"></div>
+            </div>
+          </div>
+
+          <!-- Clickable Cover Touch Area -->
+          <div class="cover-click-target" id="coverClickTarget" title="Click to open invitation" role="button" tabindex="0" aria-label="Open wedding invitation"></div>
+
+          <!-- Cast shadow below card -->
+          <div class="card-base-shadow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls & Prompts Section -->
+    <footer class="invitation-footer">
+      <!-- Screen 1: Tap to Open Prompt -->
+      <div class="tap-prompt-container" id="tapPromptContainer">
+        <button class="tap-prompt-btn" id="btnTapToOpen" aria-label="Tap to Open Invitation">
+          <span class="tap-sparkle">✧</span>
+          <span class="tap-text">Tap to Open Invitation</span>
+          <span class="tap-sparkle">✧</span>
+        </button>
+      </div>
+
+      <!-- Screen 2 & 3: Navigation Controls -->
+      <div class="nav-controls-container" id="navControlsContainer" style="display: none;">
+        <div class="nav-buttons-group">
+          <!-- Previous Button (Used on Screen 2 & 3) -->
+          <button class="btn btn-nav btn-prev" id="btnPrev" aria-label="Previous Page">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          <!-- Next Button (Used on Screen 2) -->
+          <button class="btn btn-nav btn-next" id="btnNext" aria-label="Next Page">
+            <span>Next</span>
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <!-- Start Again Button (Used on Screen 3) -->
+          <button class="btn btn-nav btn-restart" id="btnRestart" style="display: none;" aria-label="Start Again">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+            </svg>
+            <span>Start Again</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Page Indicator (1 of 3, 2 of 3, 3 of 3) -->
+      <div class="page-indicator-wrapper" id="pageIndicatorWrapper">
+        <div class="indicator-dots" aria-hidden="true">
+          <span class="dot active" data-dot="1"></span>
+          <span class="dot" data-dot="2"></span>
+          <span class="dot" data-dot="3"></span>
+        </div>
+        <span class="indicator-text" id="indicatorText">1 of 3</span>
+      </div>
+
+      <!-- Subtle keyboard helper hint for desktop -->
+      <div class="keyboard-hint" aria-hidden="true">
+        <span>Use <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to navigate</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
